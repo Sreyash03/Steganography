@@ -18,6 +18,7 @@ def load_key():
 def encrypt_message(message, key):
     cipher_suite = Fernet(key)
     encrypted_message = cipher_suite.encrypt(message.encode())
+    print("Encrypted Message:", encrypted_message.decode())
     return encrypted_message
 
 # Decrypt the message
@@ -42,8 +43,7 @@ def generate_random_password(length=16):
 
 # Encode the data into the image
 def hide_data(image_path, secret_message):
-    # Load the image
-    image = cv2.imread(image_path)
+    image = cv2.imread(image_path) # Load the image
     if image is None:
         raise ValueError("Image not found!")
 
@@ -99,12 +99,12 @@ def extract_data(encoded_image_path):
     
     return cleaned_message
 
-# Example Usage
+# Example 
 if __name__ == "__main__":
-    generate_key()  # Run this only once to generate a key
+    generate_key()  
     
     secret_message = "Confidential Data: Project XYZ"
-    image_path = "image.jpg"  # Provide your input image
+    image_path = "image.jpg"  # input image
     
     # Hide the data
     hide_data("image.jpg", secret_message)
